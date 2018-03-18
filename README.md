@@ -1,3 +1,9 @@
-# grokking_algorithms_practice
+# Grokking Algorithms Code
 Code to implement the algorithms mentioned in book *grokking algorithms*.
-Coding in Python 2.7
+
+# Coding language
+- Python 2.7
+
+# Algorithms List
+- [x] Binary search.
+- [x] Selection sort.
