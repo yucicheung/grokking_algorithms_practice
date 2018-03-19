@@ -14,9 +14,12 @@ def selection_sort(arr):
 	for i in xrange(len(arr)):
 		new_arr.append(arr.pop(findSmallest(arr)))
 	return new_arr
-	
 
-if __name__ == '__main__':
+
+def main():
 	arr = [4,5,13,1,98]
 	print selection_sort(arr)
- 
+
+
+if __name__ == '__main__':
+	main() 
