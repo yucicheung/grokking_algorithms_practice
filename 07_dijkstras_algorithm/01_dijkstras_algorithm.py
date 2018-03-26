@@ -17,30 +17,29 @@ def set_up_graph():
 	graph = {}
 	graph['start'] = {"A":6,"B":2}
 	graph["A"] = {'fin':1}
-	graph["B"] = {"A":3,"fin":5,"C":1}
-	graph["C"] = {"B":1}
+	graph["B"] = {"A":3,"fin":5}
 	graph['fin'] = {}
 	return graph
 
 
-def initialize_costs_n_fathers(graph):
-	costs, fathers ={},{}
+def initialize_costs_n_parents(graph):
+	costs, parents ={},{}
 	for node in graph:
 		if node is "start":
 			costs[node] = 0
-			fathers[node] = None
+			parents[node] = None
 		else:
 			costs[node] = float('inf')
-	return costs,fathers
+	return costs,parents
 
 
-def get_shortest_path(fathers):
+def get_shortest_path(parents):
 	path = []
-	father = 'fin'
-	path.append(father)
-	while father != 'start':
-		father = fathers[father]
-		path.append(father)
+	parent = 'fin'
+	path.append(parent)
+	while parent != 'start':
+		parent = fathers[father]
+		path.append(parent)
 	print 'Shortest path is:',
 	for i in path[-1:-len(path):-1]:
 		print '{}-->'.format(i),
@@ -52,7 +51,7 @@ def main():
 	print 'Graph as below:'
 	pprint(graph)
 	print '\n'
-	costs, fathers = initialize_costs_n_fathers(graph)
+	costs, parents = initialize_costs_n_fathers(graph)
 	to_process = [i for i in graph.keys()]
 	to_process.remove('fin')
 	while to_process:
@@ -62,9 +61,9 @@ def main():
 			new_cost = costs[node] + graph[node][neighbor]
 			if new_cost < costs[neighbor]:
 				costs[neighbor] = new_cost
-				fathers[neighbor] = node
+				parents[neighbor] = node
 		to_process.remove(node) # keys donnot share names
-	get_shortest_path(fathers)
+	get_shortest_path(parents)
 	print 'The lowest cost is {}.'.format(costs['fin'])
 	
 	
